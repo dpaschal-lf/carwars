@@ -15,6 +15,9 @@ class Car{
 			decelerating: 0,
 			turning: 0,
 		}
+		/*modify these to change the defaults for all cars
+		pass them into the car in main.js to add traits unique to
+		a particular car*/
 		var defaultOptions = {
 			angle: 0,
 			driver: 'dummy', 
