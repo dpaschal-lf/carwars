@@ -1,0 +1,73 @@
+body{
+	margin: 0;
+}
+ 
+#trackContainer{
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+.car{
+    width: 40px;
+    height: 23px;
+	position: absolute;
+}
+.car >.windshield{
+	position: absolute;
+	background-color: black;
+	width: 10%;
+    height: 80%;
+    right: 10%;
+    top: 11%;
+}
+.car > .number{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	height: 1.5vh;
+	width: 1.5vh;
+	font-size: 1vh;
+	line-height: 2vh;
+	text-align: center;
+	transform: translate(-50%, -50%) rotateZ(90deg);
+	background-color: darkgrey;
+	color: white;
+	border-radius: 50%;
+}
+.car > .wheel{
+    height: 18%;
+    width: 27%;
+	background-color: black;
+	position: absolute;
+}
+.car > .wheel:nth-of-type(1){
+	top: 100%;
+	right: 11%;
+}
+.car > .wheel:nth-of-type(2){
+	top: 100%;
+	left: 11%;
+}
+.car > .wheel:nth-of-type(3){
+	bottom: 100%;
+	right: 11%;
+}
+.car > .wheel:nth-of-type(4){
+	bottom: 100%;
+	left: 11%;
+}
+.car > .brakelights{
+	background-color: red;
+	position: absolute;
+	width: 10%;
+    height: 80%;
+    left: 0%;
+    top: 10%;	
+}
+
+
+
+
+
+
