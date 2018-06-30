@@ -1,7 +1,14 @@
 body{
 	margin: 0;
+	position: relative;
 }
- 
+#legend{
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	color: lime;
+	z-index: 1;
+}
 #trackContainer{
 	height: 100%;
 	width: 100%;
