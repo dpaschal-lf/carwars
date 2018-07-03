@@ -73,9 +73,19 @@ class CarWarsEngine{
 			case 'd':
 				this.playerCar.turn(1);
 				break;
+			case 'Shift':
+				this.playerCar.fireCurrentWeapon();
+				break;
 		}
+			console.log(event.key);
+
+		
+		
 	}
 	handleKeyUps(event){
+		if(event.which===32){
+			event.key=' ';
+		}
 		switch(event.key){
 			case 'w': 
 				this.playerCar.accelerate(0)
@@ -88,6 +98,7 @@ class CarWarsEngine{
 				this.playerCar.turn(0);
 				break;
 		}
+		
 	}
 }
 

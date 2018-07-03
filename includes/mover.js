@@ -10,6 +10,8 @@ class Mover{
 			turning: 0,
 		}
 		var moveDefaultOptions = {
+			maxDistance: Infinity,
+			currentDistance: 0,
 			angle: 0,
 			currentSpeed: 0,
 			maxSpeed: 4,
@@ -25,6 +27,11 @@ class Mover{
 				x: 0,
 				y: 0
 			}
+		}
+		this.states = {
+			accelerating: 0,
+			decelerating: 0,
+			turning: 0,
 		}
 		this.handlingSpecs = {
 			maxSpeed: null,
@@ -59,6 +66,10 @@ class Mover{
 		return degrees * Math.PI / 180;
 	}
 	move(){
+		if(this.constructor === Bullet){
+		//	debugger;
+		}
+
 		this.options.angle += this.states.turning;
 		var currentRadians = this.convertDegreesToRadians(this.options.angle);
 		if(this.states.accelerating){
@@ -80,6 +91,10 @@ class Mover{
 			var deltaDeltaY = Math.sin(currentRadians) * this.options.currentSpeed;
 			var deltaDeltaX = Math.cos(currentRadians) * this.options.currentSpeed;
 		}
+		this.options.currentDistance+= (deltaDeltaX + deltaDeltaY);
+		if( this.options.currentDistance > this.options.maxDistance){
+			this.die();
+		}
 		this.options.position.x += deltaDeltaX;
 		this.options.position.y += deltaDeltaY;
 		this.parts.body.css({
@@ -90,7 +105,7 @@ class Mover{
 	}
 	incorporateOptions(defaultOptions, externalOptions){
 		for(var key in defaultOptions){
-			if(externalOptions[key]){
+			if(externalOptions[key]!==undefined){
 				this.options[key] = externalOptions[key]; 
 			} else {
 				this.options[key] = defaultOptions[key];
@@ -107,6 +122,10 @@ class Mover{
 		} else {
 			this.parts.brakeLights.hide()
 		}
+	}
+	die(){
+		this.stop();
+		this.parts.body.remove();
 	}
 	turn(multiplier){
 		this.states.turning = multiplier;
