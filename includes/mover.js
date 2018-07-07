@@ -91,10 +91,19 @@ class Mover{
 			var deltaDeltaY = Math.sin(currentRadians) * this.options.currentSpeed;
 			var deltaDeltaX = Math.cos(currentRadians) * this.options.currentSpeed;
 		}
-		this.options.currentDistance+= (deltaDeltaX + deltaDeltaY);
-		if( this.options.currentDistance > this.options.maxDistance){
-			this.die();
+		//this.options.currentDistance+= (deltaDeltaX + deltaDeltaY);
+
+		//bullet lifespan
+		//checks distance of bullet from car.
+		//if isNAN then don't check the distance.
+		this.options.currentDistance = this.calcDistance(this.parts, this.options.position);
+		if(!isNaN(this.options.currentDistance)){
+			if( Math.abs(this.options.currentDistance) > this.options.maxDistance){
+				this.die();
+			}
 		}
+
+
 		this.options.position.x += deltaDeltaX;
 		this.options.position.y += deltaDeltaY;
 		this.parts.body.css({
@@ -129,5 +138,16 @@ class Mover{
 	}
 	turn(multiplier){
 		this.states.turning = multiplier;
+	}
+
+	//pythagrean theorem to find distance of bullet from car.
+	//@params carPosistion = [] / bulletPosition = []
+	//@Description takes two x and y posistions and calculates the distance between them
+	//@returns distance 
+	calcDistance(carPosition,bulletPosition){
+        var xDifference = Math.abs(carPosition.carPosx - bulletPosition.x);
+        var yDifference = Math.abs(carPosition.carPosy - bulletPosition.y);
+        var distance = Math.sqrt( Math.pow(xDifference,2)+Math.pow(yDifference,2));
+        return distance;
 	}
 }

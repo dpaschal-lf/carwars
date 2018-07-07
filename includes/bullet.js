@@ -5,6 +5,8 @@ class Bullet extends Mover{
 		super(options);
 		this.parts = {
 			body: null,
+			carPosx: this.options.position.x,
+			carPosy: this.options.position.y
 		};
 
 		/*modify these to change the defaults for all cars
